@@ -1,27 +1,48 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-punto2',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './punto2.component.html',
-  styleUrl: './punto2.component.css'
+  styleUrls: ['./punto2.component.css']
 })
 export class Punto2Component {
-  monto: number = 0;
-  monedaDestino: string = 'USD';
-  resultado: number = 0;
+ // En punto2.component.ts
+productos = [
+  { 
+    nombre: 'Notebook asus 13l', 
+    descripcion: 'disco 40gb, 15 pulgadas', 
+    img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80', 
+    precio: 45.5 
+  },
+  { 
+    nombre: 'Monitor lg 14', 
+    descripcion: 'pantalla led alta definicion', 
+    img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=500&q=80', 
+    precio: 99 
+  },
+  { 
+    nombre: 'Teclado mecanico', 
+    descripcion: 'luces rgb switches blue', 
+    img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=500&q=80', 
+    precio: 25.0 
+  }
+];
 
-  // Tasas de conversión fijas para el ejercicio
-  tasas: any = {
-    USD: 0.0011, 
-    EUR: 0.0010,
-    BRL: 0.0055
-  };
+  carrito: any[] = [];
 
-  convertir() {
-    this.resultado = this.monto * this.tasas[this.monedaDestino];
+  agregarAlCarrito(producto: any) {
+    this.carrito.push(producto);
+    console.log('Producto agregado:', producto.nombre);
+  }
+
+  get totalCarrito() {
+    return this.carrito.reduce((acc, p) => acc + p.precio, 0);
+  }
+
+  vaciarCarrito() {
+    this.carrito = [];
   }
 }
