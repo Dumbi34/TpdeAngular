@@ -1,3 +1,19 @@
-<h1 class="bg-primary text-white p-3">
-  Welcome to jijolines !
-</h1>
+<header class="header-fusion">
+  <nav class="glass-nav">
+    <a routerLink="/punto1" routerLinkActive="active-link" class="nav-item">
+      <span class="icon">🎡</span>
+      <span class="text">Eventos</span>
+    </a>
+    
+    <div class="separator"></div>
+
+    <a routerLink="/punto2" routerLinkActive="active-link" class="nav-item">
+      <span class="icon">💱</span>
+      <span class="text">Productos</span>
+    </a>
+  </nav>
+</header>
+
+<main class="content-area">
+  <router-outlet></router-outlet>
+</main>
