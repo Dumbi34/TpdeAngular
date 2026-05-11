@@ -1,0 +1,30 @@
+<div class="punto3-container">
+  <div class="memory-card-container">
+    <h2 class="title text-center">Juego de Memoria</h2>
+
+    <div class="status-bar">
+      <span class="attempts">Intentos restantes: {{ intentos }}</span>
+      <div class="btns">
+        <button (click)="reinicio()" class="btn-game btn-reset">REINICIAR</button>
+        <button (click)="iniciar()" class="btn-game btn-start" [disabled]="juegoIniciado">INICIAR</button>
+      </div>
+    </div>
+
+    <div class="memory-grid">
+      <div *ngFor="let carta of cartas" 
+           class="card-box" 
+           [class.flipped]="carta.visible || carta.descubierta"
+           (click)="voltearCarta(carta)">
+        <div class="card-inner">
+          <div class="card-front">?</div>
+          <div class="card-back">{{ carta.valor }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-msg mt-3 text-center">
+      <h3 *ngIf="victoria" style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">¡VICTORIA! 🏆</h3>
+      <h3 *ngIf="intentos === 0 && !victoria" style="color: #ff0055; text-shadow: 0 0 10px #ff0055;">GAME OVER 💀</h3>
+    </div>
+  </div>
+</div>

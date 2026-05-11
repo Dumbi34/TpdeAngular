@@ -1,0 +1,144 @@
+/* Contenedor principal */
+.inscripcion-container {
+    padding: 120px 20px 50px;
+    background-color: #0f051a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Tarjetas de cristal */
+.glass-form-card, .glass-table-card {
+    background: rgba(30, 10, 50, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    border-radius: 20px;
+    padding: 35px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Títulos Neón */
+.title, .title-sm {
+    color: #00f2ff;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(0, 242, 255, 0.7);
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+/* Etiquetas del formulario */
+.form-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Override de los Inputs y Selects de Bootstrap */
+.form-control, .form-select {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+/* Efecto focus al escribir */
+.form-control:focus, .form-select:focus {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-color: #00f2ff;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+    color: white;
+}
+
+/* Fondo de las opciones del select */
+.form-select option {
+    background-color: #1a052d;
+    color: white;
+}
+
+/* Etiqueta del descuento dinámico */
+.price-label {
+    background: rgba(0, 242, 255, 0.1);
+    color: #00f2ff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border: 1px dashed #00f2ff;
+    box-shadow: inset 0 0 15px rgba(0, 242, 255, 0.15);
+}
+
+/* Botón principal */
+.btn-neon-action {
+    background: #00f2ff;
+    color: #1a052d;
+    border: none;
+    padding: 15px;
+    font-weight: 800;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.btn-neon-action:hover {
+    box-shadow: 0 0 25px rgba(0, 242, 255, 0.6);
+    transform: scale(1.02);
+}
+
+/* Override de la Tabla de Bootstrap */
+.cyberpunk-table {
+    color: white;
+    margin-top: 20px;
+    --bs-table-bg: transparent; /* Esto elimina el fondo blanco por defecto */
+}
+
+.cyberpunk-table thead th {
+    color: #00f2ff;
+    border-bottom: 2px solid rgba(0, 242, 255, 0.5);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cyberpunk-table tbody td {
+    color: rgba(255, 255, 255, 0.9) !important; /* Forza el color claro */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+    padding: 15px 10px;
+}
+
+/* Sección de resumen inferior */
+.summary-section p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.total-highlight {
+    color: #00f2ff;
+    text-align: right;
+    text-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+    font-weight: 800;
+    margin-top: 15px;
+    font-size: 1.8rem;
+}
+.error-msg {
+    color: #ff0055;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.5);
+    margin-left: 5px;
+}
+
+/* Pintar bordes de rojo SOLO si el form se intentó enviar y hay errores */
+form.ng-submitted .form-control.ng-invalid, 
+form.ng-submitted .form-select.ng-invalid {
+    border-color: #ff0055;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
+}

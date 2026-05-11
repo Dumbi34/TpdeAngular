@@ -1,0 +1,91 @@
+<div class="inscripcion-container">
+  <div class="glass-form-card">
+    <h2 class="title text-center">Registro de Cursos</h2>
+    
+    <form class="row g-3" #inscripcionForm="ngForm" (ngSubmit)="registrar(inscripcionForm)">
+      <div class="col-md-6">
+        <label class="form-label">DNI</label>
+        <input type="number" class="form-control" [(ngModel)]="inscripcion.dni" name="dni" required min="1000000" #dni="ngModel" placeholder="Ej: 41234567">
+        <div *ngIf="dni.invalid && inscripcionForm.submitted" class="error-msg mt-1">
+          DNI inválido (mínimo 7 cifras).
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" [(ngModel)]="inscripcion.email" name="email" required email #email="ngModel" placeholder="ejemplo@correo.com">
+        <div *ngIf="email.invalid && inscripcionForm.submitted" class="error-msg mt-1">
+          Ingresá un correo electrónico válido.
+        </div>
+      </div>
+      
+      <div class="col-md-8">
+        <label class="form-label">Curso</label>
+        <input type="text" class="form-control" [(ngModel)]="inscripcion.curso" name="curso" required minlength="3" #curso="ngModel" placeholder="Nombre del curso">
+        <div *ngIf="curso.invalid && inscripcionForm.submitted" class="error-msg mt-1">
+          El nombre del curso es muy corto.
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <label class="form-label">Precio Base</label>
+        <input type="number" class="form-control" [(ngModel)]="inscripcion.precio" name="precio" (change)="calcularPrecioFinal()" required min="1" #precio="ngModel" placeholder="Ej: 15000">
+        <div *ngIf="precio.invalid && inscripcionForm.submitted" class="error-msg mt-1">
+          Ingresá un precio válido.
+        </div>
+      </div>
+      
+      <div class="col-md-12">
+        <label class="form-label">Categoría de Alumno</label>
+        <select class="form-select" [(ngModel)]="inscripcion.categoriaAlumno" name="cat" (change)="calcularPrecioFinal()" required #cat="ngModel">
+          <option value="" disabled selected>Seleccione una opción...</option>
+          <option value="1">Estudiante (35% OFF)</option>
+          <option value="2">Egresado (50% OFF)</option>
+          <option value="3">Particular</option>
+        </select>
+        <div *ngIf="cat.invalid && inscripcionForm.submitted" class="error-msg mt-1">
+          Tenés que seleccionar una categoría.
+        </div>
+      </div>
+
+      <div *ngIf="inscripcion.precio > 0 && inscripcion.categoriaAlumno" class="col-12 mt-3">
+        <div class="price-label">
+          Total a abonar: {{ inscripcion.precioFinal | currency:'ARS':'symbol':'1.2-2' }}
+        </div>
+      </div>
+
+      <div class="col-12 mt-4">
+        <button type="submit" class="btn-neon-action w-100">
+          REGISTRAR INSCRIPCIÓN
+        </button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="glass-table-card mt-5">
+    <h3 class="title-sm">Inscripciones Realizadas</h3>
+    <table class="table cyberpunk-table">
+      <thead>
+        <tr>
+          <th>DNI</th>
+          <th>Curso</th>
+          <th>Fecha</th> <th>Final</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listaInscripciones">
+          <td>{{ item.dni }}</td>
+          <td>{{ item.curso }}</td>
+          <td>{{ item.fechaInscripcion | date:'dd/MM/yyyy' }}</td>
+          <td>{{ item.precioFinal | currency:'ARS' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary-section mt-4">
+      <p>Estudiantes: {{ contarPorCategoria('1') }} | Egresados: {{ contarPorCategoria('2') }} | Particulares: {{ contarPorCategoria('3') }}</p>
+      <h4 class="total-highlight">TOTAL GENERAL: {{ totalGeneral | currency:'ARS' }}</h4>
+    </div>
+  </div>
+</div>
