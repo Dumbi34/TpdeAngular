@@ -6,34 +6,43 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './punto2.component.html',
-  styleUrl: './punto2.component.css'
+  styleUrls: ['./punto2.component.css']
 })
 export class Punto2Component {
-  productos = [
-    { nombre: 'notebook asus 13l', descripcion: 'disco 40gb, 15 pulgadas', img: 'https://picsum.photos/400/300?random=1', precio: 45.5 },
-    { nombre: 'monitor lg 14', descripcion: 'pantalla led alta definicion', img: 'https://picsum.photos/400/300?random=2', precio: 99 },
-    { nombre: 'teclado mecanico', descripcion: 'luces rgb switches blue', img: 'https://picsum.photos/400/300?random=3', precio: 25.0 }
-  ];
+ // En punto2.component.ts
+productos = [
+  { 
+    nombre: 'Notebook asus 13l', 
+    descripcion: 'disco 40gb, 15 pulgadas', 
+    img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80', 
+    precio: 45.5 
+  },
+  { 
+    nombre: 'Monitor lg 14', 
+    descripcion: 'pantalla led alta definicion', 
+    img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=500&q=80', 
+    precio: 99 
+  },
+  { 
+    nombre: 'Teclado mecanico', 
+    descripcion: 'luces rgb switches blue', 
+    img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=500&q=80', 
+    precio: 25.0 
+  }
+];
 
   carrito: any[] = [];
-  total: number = 0;
 
-  agregarAlCarrito(prod: any) {
-    const existe = this.carrito.find(item => item.nombre === prod.nombre);
-    if (!existe) {
-      this.carrito.push(prod);
-      this.calcularTotal();
-    } else {
-      alert('Este producto ya está en tu carrito.');
-    }
+  agregarAlCarrito(producto: any) {
+    this.carrito.push(producto);
+    console.log('Producto agregado:', producto.nombre);
   }
 
-  calcularTotal() {
-    this.total = this.carrito.reduce((sum, item) => sum + item.precio, 0);
+  get totalCarrito() {
+    return this.carrito.reduce((acc, p) => acc + p.precio, 0);
   }
 
-  limpiarCarrito() {
+  vaciarCarrito() {
     this.carrito = [];
-    this.total = 0;
   }
 }

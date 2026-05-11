@@ -1,48 +1,49 @@
 <div class="punto2-container">
-  <div class="header-seccion">
-    <h2>Productos Destacados</h2>
-    <button class="btn-carrito" data-bs-toggle="modal" data-bs-target="#carritoModal">
-      Ver carrito ({{ carrito.length }})
-    </button>
-  </div>
-
-  <div class="productos-grid">
-    <div class="card-producto" *ngFor="let p of productos">
-      <div class="img-container">
-        <img [src]="p.img" [alt]="p.nombre">
-      </div>
-      <div class="card-body">
-        <h3>{{ p.nombre }}</h3>
-        <p>{{ p.descripcion }}</p>
-        <span class="precio">${{ p.precio }}</span>
-        <button class="btn-agregar" (click)="agregarAlCarrito(p)">Agregar al carrito</button>
-      </div>
+    <div class="header-seccion">
+        <h2>Productos Destacados</h2>
+        <button class="btn-carrito" data-bs-toggle="modal" data-bs-target="#carritoModal">
+            Ver carrito ({{ carrito.length }})
+        </button>
     </div>
-  </div>
+
+    <div class="productos-grid">
+        <div class="card-producto" *ngFor="let p of productos">
+            <div class="img-container">
+                <img [src]="p.img" [alt]="p.nombre">
+            </div>
+            <div class="card-body">
+                <h3>{{ p.nombre }}</h3>
+                <p>{{ p.descripcion }}</p>
+                <span class="precio">${{ p.precio }}</span>
+                <button class="btn-agregar" (click)="agregarAlCarrito(p)">
+                    Agregar al carrito
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="carritoModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content glass-modal">
-      <div class="modal-header">
-        <h5 class="modal-title">Resumen de compra</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <ul class="list-group list-group-flush bg-transparent">
-          <li class="list-group-item bg-transparent text-white d-flex justify-content-between" *ngFor="let item of carrito">
-            {{ item.nombre }} <span>${{ item.precio }}</span>
-          </li>
-          <li class="list-group-item bg-transparent text-info d-flex justify-content-between border-top mt-2" *ngIf="carrito.length > 0">
-            <strong>TOTAL:</strong> <strong>${{ total }}</strong>
-          </li>
-          <li class="list-group-item bg-transparent text-center text-white" *ngIf="carrito.length === 0">el carrito esta vacio</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" (click)="limpiarCarrito()">Vaciar</button>
-        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Confirmar</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-modal">
+            <div class="modal-header">
+                <h5 class="modal-title">Tu Carrito</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between" *ngFor="let item of carrito">
+                        {{ item.nombre }} <span>${{ item.precio }}</span>
+                    </li>
+                    <li class="list-group-item total-row d-flex justify-content-between">
+                        <strong>TOTAL:</strong> <strong>${{ totalCarrito }}</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-clear" (click)="vaciarCarrito()">Vaciar</button>
+                <button class="btn-confirm" data-bs-dismiss="modal">Confirmar Compra</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
