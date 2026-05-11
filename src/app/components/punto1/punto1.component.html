@@ -1,0 +1,21 @@
+<div class="main-container">
+  <div class="new-age-card">
+    <div class="img-container">
+      <img [src]="eventos[indiceActual].img" [alt]="eventos[indiceActual].nombre" class="event-img">
+    </div>
+
+    <div class="text-center px-3">
+      <h2 class="title">{{ eventos[indiceActual].nombre }}</h2>
+      <p class="description">{{ eventos[indiceActual].descripcion }}</p>
+
+      <div class="d-flex justify-content-between align-items-center mt-4 px-2">
+        <button (click)="anteriorEvento()" class="btn-nav btn-prev"> < Back </button>
+        <button (click)="siguienteEvento()" class="btn-nav btn-next"> Next > </button>
+      </div>
+
+      <div class="mt-4">
+        <small class="counter">{{indiceActual + 1}} / {{eventos.length}}</small>
+      </div>
+    </div>
+  </div>
+</div>
